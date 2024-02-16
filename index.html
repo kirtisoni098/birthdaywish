@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        h1 {
+            color: darkorange;
+        }
+        
+        input[type="text"] {
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        input[type="file"] {
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        button {
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            background-color: darkorange;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .container {
+            text-align: center;
+            margin: 0 16px;
+            padding: 32px;
+            background-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container h1 {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        
+        .container p {
+            font-size: 24px;
+            margin-bottom: 32px;
+        }
+        
+        .container button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 24px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+        
+        .container button:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+    <audio id="audio" src="song/Birthday.m4a" preload="auto"></audio>
+</head>
+
+<body>
+    <h1>Happy Birthday!</h1>
+    <input type="text" id="name" placeholder="Enter your name">
+    <input type="file" id="image" accept="image/*">
+    <button id="wishBtn" onclick="generateWish()">Generate Wish</button>
+    <p id="wishText"></p>
+    <img id="imageResult" src="" alt="User image" style="display:none;">
+    <div class="container">
+
+        <p>Wishing you a day filled with joy, laughter, and love.</p>
+        <button id="play-button">Play Birthday Song</button>
+    </div>
+
+
+    <script>
+        document.getElementById('play-button').addEventListener('click', function() {
+            var audio = document.getElementById('audio');
+            audio.play();
+        });
+
+        function generateWish() {
+            const name = document.getElementById("name").value;
+            const wishText = document.getElementById("wishText");
+            const imageResult = document.getElementById("imageResult");
+
+            const userImage = document.getElementById("image").files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                imageResult.src = e.target.result;
+                imageResult.style.display = "block";
+            };
+            reader.readAsDataURL(userImage);
+
+            wishText.innerHTML = `Happy Birthday, ${name}! Here's a special message just for you...............रोज तारो की नुमाईश में खलल पड़ता है ये चाँद है पागल जो रात में निकल पड़ता है।🌜🌜............I ❤️ you 😘😘 `;
+        }
+    </script>
+</body>
+
+</html>
